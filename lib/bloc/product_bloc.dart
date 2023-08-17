@@ -1,9 +1,9 @@
 import 'package:bloc/bloc.dart';
-import 'package:get_request/states.dart';
+import 'package:get_request/bloc/product_state.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-import 'model/product_model.dart';
+import '../model/product_model.dart';
 
 class ProductBloc extends Cubit<ProductState> {
   ProductBloc() : super(ProductInitial());
@@ -17,10 +17,10 @@ class ProductBloc extends Cubit<ProductState> {
         ProductList product = ProductList.fromJson(jsonData);
         emit(ProductLoaded(product.products));
       } else {
-        emit(ProductError('Failed to load product'));
+        emit(ProductError('Error Occured'));
       }
     } catch (e) {
-      emit(ProductError('An error occurred'));
+      emit(ProductError('No internet connection'));
     }
   }
 }

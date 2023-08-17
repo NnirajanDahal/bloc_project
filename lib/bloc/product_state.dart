@@ -1,4 +1,6 @@
-import 'model/product_model.dart';
+import 'package:flutter/material.dart';
+
+import '../model/product_model.dart';
 
 sealed class ProductState {}
 
