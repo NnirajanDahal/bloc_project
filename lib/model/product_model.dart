@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class ProductList {
   final List<Product> products;
   final int total;

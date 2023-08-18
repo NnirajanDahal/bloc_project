@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get_request/bloc/product_bloc.dart';
-import 'package:get_request/bloc/product_state.dart';
 import 'package:get_request/model/product_model.dart';
 
 class ProductDetailPage extends StatefulWidget {
@@ -13,12 +9,36 @@ class ProductDetailPage extends StatefulWidget {
   State<ProductDetailPage> createState() => _ProductDetailPageState();
 }
 
+List cartProductThumbnail = [];
+List cartProductTitle = [];
+List cartProductPrice = [];
+
 class _ProductDetailPageState extends State<ProductDetailPage> {
+  bool _shoppingCartPressed = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           title: const Text("Product Detail Screen"),
+          actions: [
+            IconButton(
+                onPressed: () {
+                  setState(() {
+                    _shoppingCartPressed = true;
+                    // cartProductThumbnail.add(widget.product.thumbnail);
+                    cartProductTitle.add(widget.product.title);
+                    cartProductPrice.add(widget.product.price);
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        backgroundColor: Colors.green,
+                        content: Text("Product added to cart")));
+                  });
+                  // cartProductThumbnail.add(widget.product.thumbnail);
+                },
+                icon: Icon(_shoppingCartPressed
+                    ? Icons.shopping_cart_checkout
+                    : Icons.shopping_cart))
+          ],
         ),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -40,8 +60,13 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 50,
+              // const SizedBox(
+              //   height: 50,
+              // ),
+              Divider(),
+              Text(
+                widget.product.title,
+                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
               ),
               Text(
                 "Price: " + "\$" + widget.product.price.toString(),

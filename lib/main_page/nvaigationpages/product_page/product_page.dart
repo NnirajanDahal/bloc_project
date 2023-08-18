@@ -1,5 +1,3 @@
-// import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_request/main_page/nvaigationpages/product_page/product_detail_page/prodect_detail.dart';
@@ -25,6 +23,8 @@ class _ProductPageState extends State<ProductPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 219, 162, 88),
+        automaticallyImplyLeading: false,
         title: const Text('Product View Page'),
       ),
       body: BlocBuilder<ProductBloc, ProductState>(
@@ -55,6 +55,7 @@ class _ProductPageState extends State<ProductPage> {
                     child: Container(
                       margin: const EdgeInsets.all(2),
                       decoration: BoxDecoration(
+                        border: Border.all(),
                         color: const Color.fromARGB(255, 255, 255, 255),
                         borderRadius: BorderRadius.circular(0),
                         boxShadow: [

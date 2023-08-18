@@ -23,6 +23,7 @@ class _MainPageState extends State<MainPage> {
     return Scaffold(
       body: listScreen[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: const Color.fromARGB(255, 226, 199, 164),
         currentIndex: _currentIndex,
         onTap: (index) {
           setState(() {
